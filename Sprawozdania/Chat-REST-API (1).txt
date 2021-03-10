@@ -1,0 +1,145 @@
+Register
+
+Register a user following OAuth2 flow Resource Owner Password Credentials
+
+Method - POST
+URL - /v1/user/register
+Request body
+{
+	"email": "example@gmail.com",
+	"password": "pa55w0rd"
+}
+Response
+{
+	"success": true/false
+}
+
+Login
+
+Login user with credentials
+
+Method - POST
+URL - /v1/user/login
+Request body
+{
+	"email": "example@gmail.com",
+	"password": "pa55w0rd"
+}
+Response
+{
+	"userId": "",
+	"accessToken": ""
+}
+
+Logout
+
+Method - GET
+URL - /v1/user/logout
+Request header:
+"Authorization: Bearer <accessToken>"
+Response
+{
+	"success": true/false
+}
+
+Create chat
+
+Method - POST
+URL - /v1/chat
+Request header:
+"Authorization: Bearer <accessToken>"
+
+{
+	"name": "",
+	"isPublic": true/false
+}
+Response
+{
+	"success": true/false
+	"chatId": ""
+}
+
+Get list of chats for the user
+
+Method - GET
+URL - /v1/chats
+Request header:
+"Authorization: Bearer <accessToken>"
+Response:
+[
+  {
+	"chatId": "",
+	"members": [userId],
+	"name": "",
+	"isPrivate": true/false	
+  }
+]
+
+Subscribe to messages updates
+
+Method - GET
+URL - /v1/chat/:id/subscribe
+Request header:
+"Authorization: Bearer <accessToken>"
+Response:
+{
+	"success": true/false,
+	"message": "You are not invited to the chat"
+}
+
+Create message
+
+Method - POST
+URL - /v1/chat/:id/message
+Request header:
+"Authorization: Bearer <accessToken>"
+Request body:
+{
+	"message": "" 
+}
+Response:
+{
+	"success": true/false
+	"messageId": ""
+}
+
+Get list of messages
+
+Method - GET
+URL - /v1/chat/:id/messages
+Request header:
+"Authorization: Bearer <accessToken>"
+Response:
+[
+  {
+    "messageId": "",
+    "authorId": "",
+    "message": "",
+  }
+]
+
+Get user profile
+
+Method - GET
+URL - /v1/user/:id
+Request header:
+"Authorization: Bearer <accessToken>"
+Response:
+{
+  "userId": "",
+  "name": "",
+  "email": "",
+}
+
+Invite user to private chat
+
+Method - POST
+URL - /v1/chat/:chatId/user/:userId/invite
+Request header:
+"Authorization: Bearer <accessToken>"
+Response:
+{
+  "success": true/false
+}
+
+
